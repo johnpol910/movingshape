@@ -1,0 +1,26 @@
+.col-md-12
+  .row
+    .col-md-4
+    .col-md-4
+      .panel.panel-default.panel-primary.login-form(ng-hide='selectedChannel')
+        .panel-heading
+          %h3.panel-title Join Action
+
+        %form.panel-body
+
+          %ul.list-unstyled
+            %li
+              %label
+                Username
+            %li
+              %input.input-lg.form-control(type="text" ng-model='data.username' size="20" maxlength="20")
+
+          %ul.list-unstyled
+            %li
+              %label
+                %input.checkbox-inline.input-lg(type="checkbox" ng-model='data.super')
+                Log in with super powers?
+
+          %ul.list-unstyled
+            %li
+              %input.btn.btn-block.btn-primary(type="submit" value="Join" ng-click="join()")

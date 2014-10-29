@@ -1,0 +1,75 @@
+.container
+  %section.shape-move#shape_application
+    .container
+      %h5
+        Welcom {{data.username}}, you can move your shape by clicking the area (
+        %a(ng-href="#/join") sign out
+        \)
+      %ul.list-unstyled.list-inline(ng-show='!channels')
+        %li There are no channels. Log in as super to create some! 
+    .row
+      .col-md-2
+        %small.marker Online Users
+        %ul.list-unstyled
+          %li
+            %span.label.btn-mini.userlabel.label-origin
+              %i.fa.fa-user(ng-style="{'color':me_color }")
+                {{data.username}}(me)        
+          %li(ng-repeat="shape in shapes")
+            %span.label.btn-mini.userlabel.label-origin
+              %i.fa.fa-user(ng-style="{'color': shape.shape_color}")
+                {{shape.user}}
+            /
+              %span.label.btn-mini.userlabel.label-origin
+                %i.fa.fa-user(ng-style="(shape.user == data.username) && {'color':me_color } || (shape.user != data.username) && {'color': shape.shape_color}")
+                  {{shape.user}}{{shape.user==data.username && '(me)' || '' }}                
+          /
+            %li(ng-repeat="user in users")
+              %span.label.btn-mini.userlabel.label-origin
+                %i.fa.fa-user(ng-style="(user == data.username) && {'color':me_color } || (user != data.username) && {'color': colors[data.username]}")
+                {{user}}{{user==data.username && '(me)' || '' }}
+                {{colors[data.username]}}
+      .col-md-8(ng-mouseup='change_shape($event)')
+        .move-area
+          #me-shape(ng-style="{'left':me_pos_left, 'top': me_pos_top, 'background': me_color }")
+            %p(ng-show="message!=''" ng-style="{'left': me_text_left, 'top': '10px'}")
+              {{message}}
+          .user_shape(ng-repeat="shape in shapes" ng-style="{'left': shape.pos_left, 'top': shape.pos_top, 'background': shape.shape_color}")
+            %p(ng-show="shape.message!=''" ng-style="{'left': shape.text_left, 'top': '10px'}")
+              {{shape.message}}
+
+      .col-md-2
+        %small.marker Room Names
+        %ul.list-unstyled
+          %li.roomlabel(ng-show='data.super')
+            %a.btn.btn-danger(href='' ng-click='subscribe_shape("SuperHeroes")' )
+              %i.fa(ng-class="{'fa-spin':('SuperHeroes' == selectedChannel), 'fa-spinner':('SuperHeroes' == selectedChannel), 'fa-comments':('SuperHeroes' != selectedChannel)}")
+              SuperHeroes!
+          %li.roomlabel(ng-repeat="channel in channels")
+            %a.btn.btn-info(href='' ng-click='subscribe_shape(channel)'  ng-class="{'label-default': user != data.username, 'label-info': (channel != selectedChannel), 'label-warning':(channel == selectedChannel)}")
+              %i.fa(ng-class="{'fa-spin':(channel == selectedChannel), 'fa-spinner':(channel == selectedChannel), 'fa-comments':(channel != selectedChannel)}")
+              {{channel}}
+          %li.roomlabel(ng-show='data.super')
+            %a.btn.btn-default(href="" ng-click='showCreate = !showCreate')
+              %i.fa.fa-magic
+              Create new...
+
+          %div(ng-show='showCreate')
+            %form(ng-submit='createChannel()')
+              %h6 Create New Room
+              .input-group
+                %input.input-sm.form-control(type="text" ng-model='newChannel' placeholder="Room Name")
+                %span.input-group-btn
+                  %input.input-sm.btn.btn-default(type='submit' value='Go!')
+              %br
+              %br
+    .row 
+      .col-md-2
+      .col-md-8
+        %form(ng-submit='publish_shape("message")')
+          .input-group
+            %input.input-sm.input-message.form-control(type="text" ng-model='newMessage')
+            %span.width_for_text
+            %span.input-group-btn
+              %input.input-sm.btn.btn-default(type='submit' value='Send')      
+      .col-md-2

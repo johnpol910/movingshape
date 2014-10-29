@@ -1,0 +1,104 @@
+@media (max-width: 767px)
+{
+    body {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+.chatbox {
+  font-family:Lato;
+  width:100%;
+  height:20em;
+  margin-top:6px;
+  overflow:scroll;
+}
+
+.userlabel {
+  margin-right:8px;
+  margin-top:6px;
+}
+
+.roomlabel {
+  margin-right:8px;
+  margin-top:6px;
+}
+
+#getting_started {
+  background-color:;
+}
+
+.brandP {
+  padding-top:20px;
+}
+
+.padding-20 {
+  padding:20px;
+}
+
+.login-form{
+  margin-top: 25px;
+}
+
+.move-area{
+  border-radius : 3px;
+  border: solid 2px #999;
+  width: 100%;
+  min-height: 500px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+#me-shape{
+  width: 42px;
+  height: 42px;
+  border-radius: 30px;
+  position: absolute;
+  z-index: 10;
+
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.label-origin{
+  color: white;
+  background-color: #7b8996;
+}
+
+.user_shape{
+  width: 30px;
+  height: 30px;
+  background-color: #f00;
+  position: absolute;
+  border-radius: 30px;
+  z-index: 5;
+
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;  
+}
+
+.create-newroom{
+  font-size: 18px;
+}
+
+.move-area p{
+  padding: 0px 5px;
+  border-radius: 5px;
+  background: white;
+  border: solid 1px #000;
+  position: absolute;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.width_for_text{
+  font-size: 13px;
+  display: none;
+}
